@@ -6,29 +6,95 @@ from typing import List
 
 
 def convert_to_absolute(number: float) -> float:
-    return 0
+    if number>0:
+        return number
+    if number<0:
+        return -1*number
 
+
+#prefixes = 'JKLMNOPQ' et suffixe = 'ack'
 
 def use_prefixes() -> List[str]:
     prefixes, suffixe = 'JKLMNOPQ', 'ack'
+    l=[]
+    for p in prefixes:
+        a = p+suffixe
+        l.append(a)
+    return l
 
-    return [""]
+
+def prime(number):
+    for i in range(2, number//2):
+        if number % i == 0:
+            return False
+
+    return True
 
 
 def prime_integer_summation() -> int:
-    return 0
+    l = [2, 3, 5]
+    number = 6
+    while len(l) < 100:
+        if prime(number):
+            l.append(number)
+        number += 1
+    return sum(l)
 
 
 def factorial(number: int) -> int:
-    return 0
+    tot = 1
+    for i in range(1,number+1):
+        tot = tot *i
+
+    return tot
 
 
 def use_continue() -> None:
-    pass
+    l =[]
+    i =1
+    for i in range(1 ,11):
+        if i ==5:
+            continue
+        else:
+            print(i)
+        i += 1
+
 
 
 def verify_ages(groups: List[List[int]]) -> List[bool]:
-    return []
+    acceptee = []
+    for sublist in groups:
+        if len(sublist) > 10 or len(sublist) <= 3:
+            acceptee.append(False)
+            continue
+
+        if 50 in sublist:
+            is_50 = True
+        else:
+            is_50 = False
+
+        is_accepted = True
+        for member in sublist:
+            if member < 18:
+                is_accepted = False
+                break
+            if member > 70 and is_50:
+                is_accepted = False
+                break
+        acceptee.append(is_accepted)
+
+        if 25 in sublist:
+            acceptee.append(True)
+            continue
+
+    return acceptee
+
+
+
+
+
+
+
 
 
 def main() -> None:

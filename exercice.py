@@ -68,24 +68,14 @@ def verify_ages(groups: List[List[int]]) -> List[bool]:
             acceptee.append(False)
             continue
 
-        if 50 in sublist:
-            is_50 = True
-        else:
-            is_50 = False
-
-        is_accepted = True
-        for member in sublist:
-            if member < 18:
-                is_accepted = False
-                break
-            if member > 70 and is_50:
-                is_accepted = False
-                break
-        acceptee.append(is_accepted)
-
         if 25 in sublist:
             acceptee.append(True)
             continue
+
+        if (min(sublist)<18) or (50 in sublist and max(sublist)>70):
+            acceptee.append(False)
+            continue
+        acceptee.append(True)
 
     return acceptee
 
